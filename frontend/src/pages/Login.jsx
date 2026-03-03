@@ -15,13 +15,15 @@ export default function Login() {
     e.preventDefault();
     const credentials = { email, password };
     const result = await dispatch(login(credentials));
+    
     // only navigate when login succeeds
     if (login.fulfilled.match(result)) {
-      // redirect to root; the router will send the user to the
-      // appropriate dashboard based on their role
-      navigate('/', { replace: true });
-      // clear sensitive fields
-      setPassword('');
+      // The login reducer has already set localStorage and Redux state
+      // Use a microtask to ensure state is committed before navigating
+      Promise.resolve().then(() => {
+        navigate('/', { replace: true });
+        setPassword('');
+      });
     }
   };
 

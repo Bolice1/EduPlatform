@@ -12,13 +12,15 @@ function safeParseJSON(str, fallback) {
 
 function getInitialAuth() {
   try {
-    return {
+    const persistedAuth = {
       user: safeParseJSON(localStorage.getItem('user'), null),
       token: localStorage.getItem('token'),
       refreshToken: localStorage.getItem('refreshToken'),
       loading: false,
       error: null,
+      isInitialized: true, // Mark as initialized after loading from storage
     };
+    return persistedAuth;
   } catch {
     return {
       user: null,
@@ -26,6 +28,7 @@ function getInitialAuth() {
       refreshToken: null,
       loading: false,
       error: null,
+      isInitialized: true,
     };
   }
 }
@@ -61,6 +64,7 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
       state.refreshToken = null;
+      state.isInitialized = true; // Stay initialized after logout
       try {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
@@ -99,6 +103,7 @@ const authSlice = createSlice({
         state.refreshToken = action.payload.refreshToken;
         state.user = action.payload.user;
         state.error = null;
+        state.isInitialized = true;
         try {
           localStorage.setItem('token', action.payload.accessToken);
           localStorage.setItem('refreshToken', action.payload.refreshToken);
@@ -108,11 +113,13 @@ const authSlice = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || action.error?.message || 'Login failed';
+        state.isInitialized = true;
       })
       .addCase(refreshToken.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
         state.user = action.payload.user;
+        state.isInitialized = true;
         try {
           localStorage.setItem('token', action.payload.accessToken);
           localStorage.setItem('refreshToken', action.payload.refreshToken);
@@ -125,6 +132,7 @@ const authSlice = createSlice({
       .addCase(fetchMe.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
+        state.isInitialized = true;
         try {
           localStorage.setItem('user', JSON.stringify(action.payload));
         } catch (e) {}
@@ -134,6 +142,7 @@ const authSlice = createSlice({
         state.token = null;
         state.refreshToken = null;
         state.user = null;
+        state.isInitialized = true;
         try {
           localStorage.removeItem('token');
           localStorage.removeItem('user');

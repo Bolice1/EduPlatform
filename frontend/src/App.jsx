@@ -34,7 +34,27 @@ import Timetable from './pages/Timetable';
 import ActivityLogs from './pages/ActivityLogs';
 
 function ProtectedRoute({ children, roles }) {
-  const { user, token, loading } = useSelector((s) => s.auth);
+  const { user, token, loading, isInitialized } = useSelector((s) => s.auth);
+  
+  // CRITICAL: Wait for auth state to initialize before making any redirect decisions
+  if (!isInitialized) {
+    return (
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        background: 'var(--color-bg)',
+        color: 'var(--color-text-muted)',
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>⏳</div>
+          <p style={{ fontSize: '1rem', margin: '0' }}>Loading...</p>
+        </div>
+      </div>
+    );
+  }
+  
   // not authenticated at all
   if (!token) return <Navigate to="/login" replace />;
   // still loading user info
