@@ -169,6 +169,7 @@ app.use('/api/pdf', pdfRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/announcements', announcementRoutes);
 app.use('/api/email', emailRoutes);
+app.use('/api/timetable', require('./routes/timetable'));
 app.use('/api/activity-logs', activityLogRoutes);
 
 // ===== HEALTH CHECK =====

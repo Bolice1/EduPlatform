@@ -296,6 +296,30 @@ CREATE TABLE IF NOT EXISTS exercise_submissions (
 );
 
 -- Notes
+-- Timetables / Schedule
+CREATE TABLE IF NOT EXISTS timetables (
+  id CHAR(36) PRIMARY KEY,
+  school_id CHAR(36) NOT NULL,
+  course_id CHAR(36) NOT NULL,
+  teacher_id CHAR(36) NULL,
+  class_level VARCHAR(50) NOT NULL,
+  section VARCHAR(10) DEFAULT 'A',
+  day_of_week ENUM('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday') NOT NULL,
+  start_time TIME NOT NULL,
+  end_time TIME NOT NULL,
+  room VARCHAR(50) NULL,
+  academic_year VARCHAR(10) NOT NULL,
+  term VARCHAR(20) NOT NULL,
+  is_active TINYINT(1) DEFAULT 1,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (school_id) REFERENCES schools(id) ON DELETE CASCADE,
+  FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE,
+  FOREIGN KEY (teacher_id) REFERENCES teachers(id) ON DELETE SET NULL,
+  INDEX idx_timetable_school (school_id),
+  INDEX idx_timetable_class (class_level),
+  INDEX idx_timetable_day (day_of_week)
+);
+
 CREATE TABLE IF NOT EXISTS notes (
   id CHAR(36) PRIMARY KEY,
   school_id CHAR(36) NOT NULL,

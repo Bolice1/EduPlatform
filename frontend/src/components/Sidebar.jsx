@@ -15,6 +15,7 @@ const roleNav = {
     { to: '/students', label: 'Students' },
     { to: '/teachers', label: 'Teachers' },
     { to: '/courses', label: 'Courses' },
+    { to: '/timetable', label: '📅 Timetable' },
     { to: '/attendance', label: 'Attendance' },
     { to: '/marks', label: 'Marks' },
     { to: '/discipline', label: 'Discipline' },
@@ -41,6 +42,7 @@ const roleNav = {
   ],
   teacher: [
     { to: '/', label: 'Dashboard' },
+    { to: '/timetable', label: '📅 Timetable' },
     { to: '/marks', label: 'Marks' },
     { to: '/discipline', label: 'Discipline' },
     { to: '/homework', label: 'Homework' },
@@ -69,6 +71,7 @@ const roleNav = {
   ],
   student: [
     { to: '/', label: 'Dashboard' },
+    { to: '/timetable', label: '📅 Timetable' },
     { to: '/chat', label: '💬 Student Chat' },
     { to: '/notes', label: 'Notes' },
     { to: '/exercises', label: 'Exercises' },

@@ -30,6 +30,7 @@ import Announcements from './pages/Announcements';
 import EmailComposer from './pages/EmailComposer';
 import StudentChat from './pages/StudentChat';
 import Reports from './pages/Reports';
+import Timetable from './pages/Timetable';
 import ActivityLogs from './pages/ActivityLogs';
 
 function ProtectedRoute({ children, roles }) {
@@ -85,6 +86,11 @@ function AppRoutes() {
         <Route path="email" element={
           <ProtectedRoute roles={['school_admin', 'patron', 'matron', 'dean']}>
             <EmailComposer />
+          </ProtectedRoute>
+        } />
+        <Route path="timetable" element={
+          <ProtectedRoute roles={['school_admin', 'teacher', 'student', 'dean', 'patron', 'matron']}>
+            <Timetable />
           </ProtectedRoute>
         } />
         <Route path="chat" element={<ProtectedRoute roles={['student', 'patron', 'matron', 'dean', 'teacher', 'school_admin']}><StudentChat /></ProtectedRoute>} />
