@@ -1,0 +1,39 @@
+# Railway Configuration File
+# Reference: https://docs.railway.app/guides/railway-toml
+
+[build]
+# Dockerfile to use for building
+dockerfile = "Dockerfile"
+
+# Build context (where Dockerfile is located)
+context = "."
+
+# Args to pass to Docker build
+args = []
+
+# Disable dockerignore file
+# useDockerignore = true
+
+[deploy]
+# Main entry command
+startCommand = "node src/server.js"
+
+# Port the service listens on
+port = 5000
+
+# Whether to restart on crash
+restartPolicyMaxRetries = 0
+
+# Memory allocation (MB)
+# memory = 512
+
+# CPU shares (0.25 to 4)
+# cpuShares = 0.5
+
+[variables]
+# Set default environment variables
+NODE_ENV = "production"
+
+[plugins]
+# No additional plugins required by default
+# Available plugins: typescript, go, python, etc.

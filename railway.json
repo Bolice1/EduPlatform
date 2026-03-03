@@ -1,0 +1,13 @@
+{
+  "name": "gishoma-school-management",
+  "description": "Enterprise-grade multi-tenant school management system",
+  "builder": "dockerfile",
+  "dockerfilePath": "Dockerfile",
+  "registry": "railway",
+  "buildCommand": "npm install && npm run build",
+  "startCommand": "node src/server.js",
+  "enviroment": {
+    "NODE_ENV": "production",
+    "PORT": "5000"
+  }
+}

@@ -1,0 +1,63 @@
+# Railway Build Ignore File
+# Files/directories excluded from Railway deployment
+
+# Version control
+.git
+.gitignore
+.github
+
+# Development dependencies (will be installed fresh)
+node_modules
+**/node_modules
+
+# Testing
+tests
+*.test.js
+*.spec.js
+playwright.config.js
+
+# Documentation (not needed in production)
+*.md
+docs
+DOCUMENTATION.txt
+INDEX.md
+
+# Local development
+.env
+.env.local
+.env.*.local
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build artifacts (will be rebuilt)
+dist
+build
+*.log
+
+# Database backups
+*.sql
+*.dump
+
+# Temporary files
+tmp
+temp
+.cache
+
+# Docker files (used by Railway)
+docker-compose.yml
+docker-compose.dev.yml
+Dockerfile.frontend
+
+# Process managers (not used in Railway)
+Procfile
+
+# Configuration files for other platforms
+vercel.json
+netlify.toml
+heroku.yml
