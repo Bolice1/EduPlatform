@@ -186,3 +186,5 @@ dist/
 build/
 
 /config/
+
+*.cline_rules
