@@ -151,7 +151,9 @@ export default function Courses() {
       ),
     });
   }
+// these are sample classes for development services 
 
+// not real ones 
   const classLevels = [
     'Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5', 'Primary 6',
     'Senior 1', 'Senior 2', 'Senior 3', 'Senior 4', 'Senior 5', 'Senior 6',
