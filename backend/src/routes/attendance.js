@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+// let us load the attandance controllers from the controllers 
 const attendanceController = require('../controllers/attendanceController');
 const { authenticate, authorize, requireSchoolContext } = require('../middleware/auth');
 const { assertSchoolAccess } = require('../middleware/schoolAccess');
