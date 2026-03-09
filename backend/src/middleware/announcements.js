@@ -15,7 +15,7 @@ async function canPostAnnouncement(req, res, next) {
         'SELECT is_prefect FROM students WHERE user_id = ?',
         [req.userId]
       );
-      const student = students[0];
+      const student = students[0];// this is to check if a student is a headboy/or headgirl`
       if (student && student.is_prefect && student.is_prefect !== 'none') {
         return next();
       }
